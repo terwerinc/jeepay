@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:5.7.43
+    container_name: mysql
+    ports:
+      - "3310:3306"
+    networks:
+      - jeepay-net
+    restart: always
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./work/mysql/log:/var/log/mysql
+      - ./work/mysql/data:/var/lib/mysql
+      - ./work/mysql/mysql-files:/var/lib/mysql-files
+      - ./work/mysql/config:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+networks:
+  jeepay-net:
+    external: true
