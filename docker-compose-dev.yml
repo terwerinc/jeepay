@@ -14,8 +14,16 @@ services:
       - ./work/mysql/data:/var/lib/mysql
       - ./work/mysql/mysql-files:/var/lib/mysql-files
       - ./work/mysql/config:/etc/mysql/conf.d
+      - ./docs/sql:/docker-entrypoint-initdb.d/
     environment:
+      LANG: C.UTF-8
       MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: jeepaydb
+      MYSQL_USER: terwer
+      MYSQL_PASSWORD: 123456
+      MYSQL_INITDB_CHARSET: utf8mb4
+
 
 networks:
   jeepay-net:
