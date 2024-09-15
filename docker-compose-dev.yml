@@ -6,7 +6,7 @@ services:
       - "3310:3306"
     networks:
       - jeepay-net
-    restart: always
+    restart: no
     privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -31,7 +31,7 @@ services:
       - "6380:6379"
     networks:
       - jeepay-net
-    restart: always
+    restart: no
     privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -47,7 +47,7 @@ services:
       - jeepay-net
     volumes:
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: no
   jeepay-manager:
     image: jeepay/jeepay-manager:2.4.8
     container_name: jeepay-manager
@@ -67,7 +67,7 @@ services:
       - ./jeepay-manager:/jeepayhomes/sources/jeepay-manager
       - ./work/service/logs:/jeepayhomes/service/logs
       - ./work/service/uploads:/jeepayhomes/service/uploads
-    restart: always
+    restart: no
   jeepay-merchant:
     image: jeepay/jeepay-merchant:2.4.8
     container_name: jeepay-merchant
@@ -87,7 +87,7 @@ services:
       - ./jeepay-merchant:/jeepayhomes/sources/jeepay-merchant
       - ./work/service/logs:/jeepayhomes/service/logs
       - ./work/service/uploads:/jeepayhomes/service/uploads
-    restart: always
+    restart: no
   jeepay-payment:
     image: jeepay/jeepay-payment:2.4.8
     container_name: jeepay-payment
@@ -107,7 +107,7 @@ services:
       - ./jeepay-payment:/jeepayhomes/sources/jeepay-payment
       - ./work/service/logs:/jeepayhomes/service/logs
       - ./work/service/uploads:/jeepayhomes/service/uploads
-    restart: always
+    restart: no
 
 networks:
   jeepay-net:
