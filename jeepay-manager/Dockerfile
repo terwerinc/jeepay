@@ -5,7 +5,8 @@
 # ------   START   ------
 
 # 基础镜像来自： https://hub.docker.com/ 官方OFFICIAL
-FROM openjdk:8u342-jdk
+# FROM openjdk:8u342-jdk
+FROM maven:3.6.0-jdk-8-alpine
 
 MAINTAINER Terrfly
 
@@ -27,10 +28,15 @@ VOLUME ["/jeepayhomes/service/logs", "/jeepayhomes/service/uploads"]
 # 创建目录
 RUN mkdir /jeepayhomes/service/app -p
 
-# 安装
-COPY ./target/jeepay-manager.jar /jeepayhomes/service/app/jeepay-manager.jar
+# 打包
+WORKDIR /jeepayhomes/sources/jeepay-manager
 
-# 设置工作目录
+# 安装
+# 注意：COPY 命令第一个参数对应的是宿主机器的文件系统，第二个参数是容器内部的文件系统
+COPY ./jeepay-manager/target/jeepay-manager.jar /jeepayhomes/service/app/jeepay-manager.jar
+COPY ./conf/manager/application.yml /jeepayhomes/service/app/application.yml
+
+## 设置工作目录
 WORKDIR /jeepayhomes/service/app
 
 CMD ["java", "-jar", "jeepay-manager.jar"]

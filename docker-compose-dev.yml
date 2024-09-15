@@ -23,7 +23,47 @@ services:
       MYSQL_USER: terwer
       MYSQL_PASSWORD: 123456
       MYSQL_INITDB_CHARSET: utf8mb4
-
+  redis:
+    image: redis:6.2.14
+    container_name: redis
+    command: redis-server /etc/redis/redis.conf
+    ports:
+      - "6380:6379"
+    networks:
+      - jeepay-net
+    restart: always
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./work/redis/config/redis.conf:/etc/redis/redis.conf
+      - ./work/redis/data:/data
+  activemq:
+    image: apache/activemq-classic:5.18.4
+    container_name: activemq
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+    networks:
+      - jeepay-net
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+  jeepay-manager:
+    image: jeepay/jeepay-manager:2.4.8
+    container_name: jeepay-manager
+    build:
+      context: ./
+      dockerfile: ./jeepay-manager/Dockerfile
+    ports:
+      - "9217:9217"
+    networks:
+      - jeepay-net
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./jeepay-manager:/jeepayhomes/sources/jeepay-manager
+      - ./work/service/logs:/jeepayhomes/service/logs
+      - ./work/service/uploads:/jeepayhomes/service/uploads
+    restart: always
 
 networks:
   jeepay-net:

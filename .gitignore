@@ -59,3 +59,6 @@ docker/rocketmq/broker/store/
 docker/rocketmq/namesrv/
 
 work/
+*-prod.yml
+*-prod.xml
+Dockerfile-prod

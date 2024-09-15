@@ -1,0 +1,21 @@
+services:
+  jeepay-manager:
+    image: jeepay/jeepay-manager:2.4.8
+    container_name: jeepay-manager
+    build:
+      context: ./
+      dockerfile: ./jeepay-manager/Dockerfile
+    ports:
+      - "9217:9217"
+    networks:
+      - jeepay-net
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./work/service/logs:/jeepayhomes/service/logs
+      - ./work/service/uploads:/jeepayhomes/service/uploads
+      - ./conf/manager/application-prod.yml:/jeepayhomes/service/app/application.yml
+    restart: always
+
+networks:
+  jeepay-net:
+    external: true
