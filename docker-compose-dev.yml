@@ -35,7 +35,7 @@ services:
     privileged: true
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ./work/redis/config/redis.conf:/etc/redis/redis.conf
+      - ./conf/devCommons/redis:/etc/redis
       - ./work/redis/data:/data
   activemq:
     image: apache/activemq-classic:5.18.4
@@ -54,6 +54,10 @@ services:
     build:
       context: ./
       dockerfile: ./jeepay-manager/Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - activemq
     ports:
       - "9217:9217"
     networks:

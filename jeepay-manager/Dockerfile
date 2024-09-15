@@ -10,6 +10,9 @@ FROM maven:3.6.0-jdk-8-alpine
 
 MAINTAINER Terrfly
 
+ENV LANG en_US.UTF-8
+RUN apk add --update ttf-dejavu fontconfig && rm -rf /var/cache/apk/*
+
 # 配置环境变量，支持中文。
 ENV LANG=C.UTF-8
 

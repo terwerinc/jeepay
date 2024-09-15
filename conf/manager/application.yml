@@ -56,7 +56,7 @@ spring:
     type: redis
   redis:
     host: redis
-    port: 6380
+    port: 6379
     database: 1    #1库：运营平台  #2库：商户系统 #3库：支付网关
     timeout: 1000
     password:
