@@ -31,11 +31,13 @@ echo "[3] 启动服务 ...."
 docker compose -f docker-compose-dev.yml up --build
 echo "[3] Done. "
 
-# 启动入口
-# 项目名称	方位地址
-# payment	127.0.0.1:9216
-# cashier	127.0.0.1:9226
-# manager	127.0.0.1:9217
-# manager-ui	127.0.0.1:9227
-# merchant	127.0.0.1:9218
-# merchant-ui	127.0.0.1:9228
+echo ">>>>>>> "
+echo ">>>>>>> "
+echo ">>>>>>>安装完成， 所有的配置文件和项目文件都在：$rootDir 文件夹中。 "
+echo ">>>>>>>项目访问地址 （注意开通端口防火墙）：   "
+echo ">>>>>>>运营平台： http://外网IP:19217   账号密码： jeepay/jeepay123   "
+echo ">>>>>>>商户平台： http://外网IP:19218   账号密码： 需要登录运营平台手动创建。    "
+echo ">>>>>>>支付网关： http://外网IP:19216   "
+echo ">>>>>>>若配置域名请更改 $rootDir/nginx/conf/nginx.conf 配置文件。 "
+echo ""
+echo "Complete."

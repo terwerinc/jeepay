@@ -16,13 +16,20 @@
 
 运营平台：
     http://localhost:9217
-    账号密码： jeepay/jeepay123
+    账号密码：jeepay/jeepay123
+
+商户：
+    http://localhost:9218
+    需要登录运营平台手动创建。
+    账号密码：terwer/jeepay666
 
 ## 前端
 
 访问地址：
 
-运营平台：http://localhost:8000/user/login
+运营平台：http://localhost:8000/
+
+商户平台：http://localhost:8001/
 
 ## Prod
 
