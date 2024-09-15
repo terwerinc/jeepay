@@ -88,6 +88,26 @@ services:
       - ./work/service/logs:/jeepayhomes/service/logs
       - ./work/service/uploads:/jeepayhomes/service/uploads
     restart: always
+  jeepay-payment:
+    image: jeepay/jeepay-payment:2.4.8
+    container_name: jeepay-payment
+    build:
+      context: ./
+      dockerfile: ./jeepay-payment/Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - activemq
+    ports:
+      - "9216:9216"
+    networks:
+      - jeepay-net
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./jeepay-payment:/jeepayhomes/sources/jeepay-payment
+      - ./work/service/logs:/jeepayhomes/service/logs
+      - ./work/service/uploads:/jeepayhomes/service/uploads
+    restart: always
 
 networks:
   jeepay-net:

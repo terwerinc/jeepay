@@ -5,9 +5,13 @@
 # ------   START   ------
 
 # 基础镜像来自： https://hub.docker.com/ 官方OFFICIAL
-FROM openjdk:8u342-jdk
+# FROM openjdk:8u342-jdk
+FROM maven:3.6.0-jdk-8-alpine
 
 MAINTAINER Terrfly
+
+ENV LANG en_US.UTF-8
+RUN apk add --update ttf-dejavu fontconfig && rm -rf /var/cache/apk/*
 
 # 配置环境变量，支持中文。
 ENV LANG=C.UTF-8
@@ -28,7 +32,8 @@ VOLUME ["/jeepayhomes/service/logs", "/jeepayhomes/service/uploads"]
 RUN mkdir /jeepayhomes/service/app -p
 
 # 安装
-COPY ./target/jeepay-payment.jar /jeepayhomes/service/app/jeepay-payment.jar
+COPY ./jeepay-payment/target/jeepay-payment.jar /jeepayhomes/service/app/jeepay-payment.jar
+COPY ./conf/payment/application.yml /jeepayhomes/service/app/application.yml
 
 # 设置工作目录
 WORKDIR /jeepayhomes/service/app
